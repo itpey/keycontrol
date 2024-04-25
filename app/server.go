@@ -37,60 +37,6 @@ func healthHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // keyPressHandler simulates a key press based on the provided key code and modifiers.
-func keyPressHandler(w http.ResponseWriter, r *http.Request) {
-
-	if r.Method != "POST" {
-		http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
-		return
-	}
-
-	// Check if the request contains the correct token
-	token := r.Header.Get("Authorization")
-	if token == "" || token != authToken {
-		http.Error(w, http.StatusText(http.StatusUnauthorized), http.StatusUnauthorized)
-		return
-	}
-
-	keyCode := r.URL.Query().Get("keyCode")
-	shift := r.URL.Query().Get("shift") == "true"
-	ctrl := r.URL.Query().Get("ctrl") == "true"
-	alt := r.URL.Query().Get("alt") == "true"
-	super := r.URL.Query().Get("super") == "true"
-
-	if keyCode == "" {
-		http.Error(w, "keyCode parameter is required", http.StatusBadRequest)
-		return
-	}
-
-	vkCode := getKeyCodeByKeyName(keyCode)
-	if vkCode == 0 {
-		http.Error(w, "Invalid keyCode provided", http.StatusBadRequest)
-		return
-	}
-	var keyCodes []int
-	keyCodes = append(keyCodes, vkCode)
-	simulateKeyPress(keyCodes, shift, ctrl, alt, super)
-
-	logMessage := fmt.Sprintf("Key press simulated for keyCode: %s", keyCode)
-	if ctrl {
-		logMessage += " | Ctrl"
-	}
-	if alt {
-		logMessage += " | Alt"
-	}
-	if shift {
-		logMessage += " | Shift"
-	}
-	if super {
-		logMessage += " | Super"
-	}
-
-	log.Print(logMessage)
-	fmt.Fprint(w, logMessage)
-
-}
-
-// keyPressHandler simulates a key press based on the provided key code and modifiers.
 func multiKeyHandler(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method != "POST" {
@@ -105,14 +51,14 @@ func multiKeyHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	keysParam := r.URL.Query().Get("keyCodes")
+	keysParam := r.URL.Query().Get("keycodes")
 	shift := r.URL.Query().Get("shift") == "true"
 	ctrl := r.URL.Query().Get("ctrl") == "true"
 	alt := r.URL.Query().Get("alt") == "true"
 	super := r.URL.Query().Get("super") == "true"
 
 	if keysParam == "" {
-		http.Error(w, "keyCodes parameter is required", http.StatusBadRequest)
+		http.Error(w, "keycodes parameter is required", http.StatusBadRequest)
 		return
 	}
 
@@ -123,7 +69,7 @@ func multiKeyHandler(w http.ResponseWriter, r *http.Request) {
 	for _, keyName := range keyNames {
 		vkCode := getKeyCodeByKeyName(keyName)
 		if vkCode == 0 {
-			http.Error(w, "Invalid keyCodes provided", http.StatusBadRequest)
+			http.Error(w, "Invalid keycodes provided", http.StatusBadRequest)
 			return
 		}
 		keyCodes = append(keyCodes, vkCode)
@@ -131,7 +77,7 @@ func multiKeyHandler(w http.ResponseWriter, r *http.Request) {
 
 	simulateKeyPress(keyCodes, shift, ctrl, alt, super)
 
-	logMessage := fmt.Sprintf("Key press simulated for keyCodes: %s", strings.Join(keyNames, " | "))
+	logMessage := fmt.Sprintf("Key press simulated for keycodes: %s", strings.Join(keyNames, " | "))
 	if ctrl {
 		logMessage += " | Ctrl"
 	}
@@ -187,8 +133,7 @@ func serveServer() {
 
 	// Register route handlers
 	http.HandleFunc("/health", healthHandler)
-	http.HandleFunc("/press", keyPressHandler)
-	http.HandleFunc("/press/multi", multiKeyHandler)
+	http.HandleFunc("/press", multiKeyHandler)
 
 	fmt.Print(color.YellowString("API: "))
 	fmt.Println(strings.Join(getConnectedIPs(), " | "))
