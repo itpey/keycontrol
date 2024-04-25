@@ -38,7 +38,12 @@ func simulateKeyPress(vkCode int, hasShift bool, hasCtrl bool, hasAlt bool, hasS
 		log.Fatalf(color.RedString("Error: Creating key binding: %v"), err)
 	}
 
+	if runtime.GOOS == "linux" {
+		time.Sleep(2 * time.Second)
+	}
+
 	kb.SetKeys(vkCode)
+
 	kb.HasSHIFT(hasShift)
 	kb.HasCTRLR(hasCtrl)
 	kb.HasALT(hasAlt)
@@ -193,122 +198,28 @@ func getKeyCodeByKeyName(keyName string) int {
 		return keybd_event.VK_F19
 	case "F20":
 		return keybd_event.VK_F20
-	case "F21":
-		return keybd_event.VK_F21
-	case "F22":
-		return keybd_event.VK_F22
-	case "F23":
-		return keybd_event.VK_F23
-	case "F24":
-		return keybd_event.VK_F24
-	case "NUMLOCK":
-		return keybd_event.VK_NUMLOCK
-	case "SCROLLLOCK":
-		return keybd_event.VK_SCROLLLOCK
-	case "RESERVED":
-		return keybd_event.VK_RESERVED
 	case "MINUS":
 		return keybd_event.VK_MINUS
 	case "EQUAL":
 		return keybd_event.VK_EQUAL
-	case "BACKSPACE":
-		return keybd_event.VK_BACKSPACE
 	case "TAB":
 		return keybd_event.VK_TAB
-	case "LEFTBRACE":
-		return keybd_event.VK_LEFTBRACE
-	case "RIGHTBRACE":
-		return keybd_event.VK_RIGHTBRACE
 	case "ENTER":
 		return keybd_event.VK_ENTER
 	case "SEMICOLON":
 		return keybd_event.VK_SEMICOLON
-	case "APOSTROPHE":
-		return keybd_event.VK_APOSTROPHE
 	case "GRAVE":
 		return keybd_event.VK_GRAVE
 	case "BACKSLASH":
 		return keybd_event.VK_BACKSLASH
 	case "COMMA":
 		return keybd_event.VK_COMMA
-	case "DOT":
-		return keybd_event.VK_DOT
 	case "SLASH":
 		return keybd_event.VK_SLASH
-	case "KPASTERISK":
-		return keybd_event.VK_KPASTERISK
 	case "SPACE":
 		return keybd_event.VK_SPACE
 	case "CAPSLOCK":
 		return keybd_event.VK_CAPSLOCK
-	case "KP0":
-		return keybd_event.VK_KP0
-	case "KP1":
-		return keybd_event.VK_KP1
-	case "KP2":
-		return keybd_event.VK_KP2
-	case "KP3":
-		return keybd_event.VK_KP3
-	case "KP4":
-		return keybd_event.VK_KP4
-	case "KP5":
-		return keybd_event.VK_KP5
-	case "KP6":
-		return keybd_event.VK_KP6
-	case "KP7":
-		return keybd_event.VK_KP7
-	case "KP8":
-		return keybd_event.VK_KP8
-	case "KP9":
-		return keybd_event.VK_KP9
-	case "KPMINUS":
-		return keybd_event.VK_KPMINUS
-	case "KPPLUS":
-		return keybd_event.VK_KPPLUS
-	case "KPDOT":
-		return keybd_event.VK_KPDOT
-	case "LBUTTON":
-		return keybd_event.VK_LBUTTON
-	case "RBUTTON":
-		return keybd_event.VK_RBUTTON
-	case "CANCEL":
-		return keybd_event.VK_CANCEL
-	case "MBUTTON":
-		return keybd_event.VK_MBUTTON
-	case "XBUTTON1":
-		return keybd_event.VK_XBUTTON1
-	case "XBUTTON2":
-		return keybd_event.VK_XBUTTON2
-	case "BACK":
-		return keybd_event.VK_BACK
-	case "CLEAR":
-		return keybd_event.VK_CLEAR
-	case "PAUSE":
-		return keybd_event.VK_PAUSE
-	case "CAPITAL":
-		return keybd_event.VK_CAPITAL
-	case "KANA":
-		return keybd_event.VK_KANA
-	case "HANGUEL":
-		return keybd_event.VK_HANGUEL
-	case "HANGUL":
-		return keybd_event.VK_HANGUL
-	case "JUNJA":
-		return keybd_event.VK_JUNJA
-	case "FINAL":
-		return keybd_event.VK_FINAL
-	case "HANJA":
-		return keybd_event.VK_HANJA
-	case "KANJI":
-		return keybd_event.VK_KANJI
-	case "CONVERT":
-		return keybd_event.VK_CONVERT
-	case "NONCONVERT":
-		return keybd_event.VK_NONCONVERT
-	case "ACCEPT":
-		return keybd_event.VK_ACCEPT
-	case "MODECHANGE":
-		return keybd_event.VK_MODECHANGE
 	case "PAGEUP":
 		return keybd_event.VK_PAGEUP
 	case "PAGEDOWN":
@@ -325,110 +236,10 @@ func getKeyCodeByKeyName(keyName string) int {
 		return keybd_event.VK_RIGHT
 	case "DOWN":
 		return keybd_event.VK_DOWN
-	case "SELECT":
-		return keybd_event.VK_SELECT
-	case "PRINT":
-		return keybd_event.VK_PRINT
-	case "EXECUTE":
-		return keybd_event.VK_EXECUTE
-	case "SNAPSHOT":
-		return keybd_event.VK_SNAPSHOT
-	case "INSERT":
-		return keybd_event.VK_INSERT
 	case "DELETE":
 		return keybd_event.VK_DELETE
 	case "HELP":
 		return keybd_event.VK_HELP
-	case "SCROLL":
-		return keybd_event.VK_SCROLL
-	case "LMENU":
-		return keybd_event.VK_LMENU
-	case "RMENU":
-		return keybd_event.VK_RMENU
-	case "BROWSER_BACK":
-		return keybd_event.VK_BROWSER_BACK
-	case "BROWSER_FORWARD":
-		return keybd_event.VK_BROWSER_FORWARD
-	case "BROWSER_REFRESH":
-		return keybd_event.VK_BROWSER_REFRESH
-	case "BROWSER_STOP":
-		return keybd_event.VK_BROWSER_STOP
-	case "BROWSER_SEARCH":
-		return keybd_event.VK_BROWSER_SEARCH
-	case "BROWSER_FAVORITES":
-		return keybd_event.VK_BROWSER_FAVORITES
-	case "BROWSER_HOME":
-		return keybd_event.VK_BROWSER_HOME
-	case "VOLUME_MUTE":
-		return keybd_event.VK_VOLUME_MUTE
-	case "VOLUME_DOWN":
-		return keybd_event.VK_VOLUME_DOWN
-	case "VOLUME_UP":
-		return keybd_event.VK_VOLUME_UP
-	case "MEDIA_NEXT_TRACK":
-		return keybd_event.VK_MEDIA_NEXT_TRACK
-	case "MEDIA_PREV_TRACK":
-		return keybd_event.VK_MEDIA_PREV_TRACK
-	case "MEDIA_STOP":
-		return keybd_event.VK_MEDIA_STOP
-	case "MEDIA_PLAY_PAUSE":
-		return keybd_event.VK_MEDIA_PLAY_PAUSE
-	case "LAUNCH_MAIL":
-		return keybd_event.VK_LAUNCH_MAIL
-	case "LAUNCH_MEDIA_SELECT":
-		return keybd_event.VK_LAUNCH_MEDIA_SELECT
-	case "LAUNCH_APP1":
-		return keybd_event.VK_LAUNCH_APP1
-	case "LAUNCH_APP2":
-		return keybd_event.VK_LAUNCH_APP2
-	case "OEM_1":
-		return keybd_event.VK_OEM_1
-	case "OEM_PLUS":
-		return keybd_event.VK_OEM_PLUS
-	case "OEM_COMMA":
-		return keybd_event.VK_OEM_COMMA
-	case "OEM_MINUS":
-		return keybd_event.VK_OEM_MINUS
-	case "OEM_PERIOD":
-		return keybd_event.VK_OEM_PERIOD
-	case "OEM_2":
-		return keybd_event.VK_OEM_2
-	case "OEM_3":
-		return keybd_event.VK_OEM_3
-	case "OEM_4":
-		return keybd_event.VK_OEM_4
-	case "OEM_5":
-		return keybd_event.VK_OEM_5
-	case "OEM_6":
-		return keybd_event.VK_OEM_6
-	case "OEM_7":
-		return keybd_event.VK_OEM_7
-	case "OEM_8":
-		return keybd_event.VK_OEM_8
-	case "OEM_102":
-		return keybd_event.VK_OEM_102
-	case "PROCESSKEY":
-		return keybd_event.VK_PROCESSKEY
-	case "PACKET":
-		return keybd_event.VK_PACKET
-	case "ATTN":
-		return keybd_event.VK_ATTN
-	case "CRSEL":
-		return keybd_event.VK_CRSEL
-	case "EXSEL":
-		return keybd_event.VK_EXSEL
-	case "EREOF":
-		return keybd_event.VK_EREOF
-	case "PLAY":
-		return keybd_event.VK_PLAY
-	case "ZOOM":
-		return keybd_event.VK_ZOOM
-	case "NONAME":
-		return keybd_event.VK_NONAME
-	case "PA1":
-		return keybd_event.VK_PA1
-	case "OEM_CLEAR":
-		return keybd_event.VK_OEM_CLEAR
 	default:
 		return 0
 	}
