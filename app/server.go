@@ -123,7 +123,7 @@ func multiKeyHandler(w http.ResponseWriter, r *http.Request) {
 	for _, keyName := range keyNames {
 		vkCode := getKeyCodeByKeyName(keyName)
 		if vkCode == 0 {
-			http.Error(w, "Invalid keyCode provided", http.StatusBadRequest)
+			http.Error(w, "Invalid keyCodes provided", http.StatusBadRequest)
 			return
 		}
 		keyCodes = append(keyCodes, vkCode)
@@ -131,7 +131,7 @@ func multiKeyHandler(w http.ResponseWriter, r *http.Request) {
 
 	simulateKeyPress(keyCodes, shift, ctrl, alt, super)
 
-	logMessage := fmt.Sprintf("Key press simulated for keyCode: %s", strings.Join(keyNames, " | "))
+	logMessage := fmt.Sprintf("Key press simulated for keyCodes: %s", strings.Join(keyNames, " | "))
 	if ctrl {
 		logMessage += " | Ctrl"
 	}
