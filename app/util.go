@@ -32,7 +32,7 @@ func showVersion() error {
 }
 
 // simulateKeyPress simulates a key press event based on the provided parameters.
-func simulateKeyPress(vkCode int, hasShift bool, hasCtrl bool, hasAlt bool, hasSuper bool) {
+func simulateKeyPress(vkCode []int, hasShift bool, hasCtrl bool, hasAlt bool, hasSuper bool) {
 	kb, err := keybd_event.NewKeyBonding()
 	if err != nil {
 		log.Fatalf(color.RedString("Error: Creating key binding: %v"), err)
@@ -42,7 +42,7 @@ func simulateKeyPress(vkCode int, hasShift bool, hasCtrl bool, hasAlt bool, hasS
 		time.Sleep(2 * time.Second)
 	}
 
-	kb.SetKeys(vkCode)
+	kb.SetKeys(vkCode...)
 
 	kb.HasSHIFT(hasShift)
 	kb.HasCTRLR(hasCtrl)
