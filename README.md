@@ -19,7 +19,7 @@
 
 ## Table of Contents
 
-- [Overview](#Overview)
+- [Overview](#overview)
 - [Features](#features)
 - [Getting Started](#getting-started)
   - [Installation](#installation)
@@ -47,7 +47,7 @@ This project provides a simple HTTP server that allows you to simulate key press
 
 #### Using Binary Releases
 
-- Go to the [Releases](https://github.com/itpey/keycontrol/releases) page of KeyControl repository.
+- Go to the [Releases](https://github.com/itpey/keycontrol/releases)
 - Download the latest release for your operating system.
 
 #### Using go install
