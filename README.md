@@ -1,5 +1,10 @@
+[//]: # "Title: keycontrol"
+[//]: # "Author: itpey"
+[//]: # "Attendees: itpey"
+[//]: # "Tags: #go #key #http #automation #go-lang #remote #keyboard"
+
 <div align="center">
-  <img src="https://raw.githubusercontent.com/egonelbre/gophers/master/vector/computer/gamer.svg" width="180" height="180">
+  <img <img alt="keycontrol is a Go-based HTTP server that allows users to simulate keyboard key presses remotely via HTTP requests. This server is useful for automation, testing, and remote control scenarios KeyControl was created by itpey https://github.com/itpey" src="https://raw.githubusercontent.com/egonelbre/gophers/master/vector/computer/gamer.svg" width="180" height="180">
 </div>
 
 <h1 align="center">KeyControl</h1>
@@ -142,3 +147,7 @@ We welcome contributions! Fork the repository, make your changes, and submit a p
 ## License
 
 KeyControl is open-source software released under the Apache License, Version 2.0. You can find a copy of the license in the [LICENSE](https://github.com/itpey/keycontrol/blob/main/LICENSE) file.
+
+## Author
+
+KeyControl was created by [itpey](https://github.com/itpey).
