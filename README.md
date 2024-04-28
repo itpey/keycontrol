@@ -34,6 +34,7 @@
 - [Key Code Mapping](#key-code-mapping)
 - [Feedback and Contributions](#feedback-and-contributions)
 - [License](#license)
+- [Author](#author)
 
 ## Overview
 
