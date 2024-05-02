@@ -151,4 +151,4 @@ KeyControl is open-source software released under the Apache License, Version 2.
 
 ## Author
 
-KeyControl was created by [itpey](https://github.com/itpey).
+KeyControl was created by [itpey](https://github.com/itpey)
