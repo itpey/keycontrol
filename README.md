@@ -22,21 +22,7 @@
   </a>
 </p>
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Getting Started](#getting-started)
-  - [Installation](#installation)
-  - [Usage](#usage)
-- [API Endpoints](api-endpoints)
-- [Configuration](#configuration)
-- [Key Code Mapping](#key-code-mapping)
-- [Feedback and Contributions](#feedback-and-contributions)
-- [License](#license)
-- [Author](#author)
-
-## Overview
+# Overview
 
 This project provides a simple HTTP server that allows you to simulate key presses on the server machine by making HTTP requests with specific parameters. It uses the [micmonay/keybd_event](https://github.com/micmonay/keybd_event) package to handle the keyboard events.
 
@@ -47,16 +33,14 @@ This project provides a simple HTTP server that allows you to simulate key press
 - Easy-to-use API for integrating with other applications
 - Customizable port and authentication token for security
 
-## Getting Started
+# Installation
 
-### Installation
-
-#### Using Binary Releases
+## Using Binary Releases
 
 - Go to the [Releases](https://github.com/itpey/keycontrol/releases)
 - Download the latest release for your operating system.
 
-#### Using go install
+## Using go install
 
 If you have Go installed on your system, you can install the latest version of KeyControl directly using the go install command:
 
@@ -66,7 +50,7 @@ go install github.com/itpey/keycontrol@latest
 
 Ensure that your `GOBIN` directory is in your `PATH` for the installed binary to be accessible globally.
 
-### Usage
+# Usage
 
 Once installed, you can use KeyControl from the command line:
 
@@ -74,23 +58,23 @@ Once installed, you can use KeyControl from the command line:
 $ keycontrol -h
 ```
 
-## API Endpoints
+# API Endpoints
 
-### `/health` (GET)
+## `/health` (GET)
 
 Check the health status of the server.
 
-#### Example:
+### Example:
 
 ```bash
 curl -X GET "http://localhost:8080/health"
 ```
 
-### `/press` (POST)
+## `/press` (POST)
 
 Simulate key press.
 
-#### Parameters:
+### Parameters:
 
 - `keycodes (required)`: Comma-separated list of virtual key codes to simulate.
 - `shift (optional)`: Set to true to press SHIFT key.
@@ -98,36 +82,36 @@ Simulate key press.
 - `alt (optional)`: Set to true to press ALT key.
 - `super (optional)`: Set to true to press Windows/Super key.
 
-#### Example:
+### Example:
 
 ```bash
 curl -X POST "http://localhost:8080/press?keycodes=A,B,C&ctrl=true" \
   -H "Authorization: keycontrol"
 ```
 
-## Configuration
+# Configuration
 
-### Command-line Flags
+## Command-line Flags
 
 You can configure the KeyControl server using the following command-line flags:
 
 - `-- port, -p`: Specifies the server port (default: 8080).
 - `--auth, -a`: Specifies the authentication token (default: keycontrol).
 
-#### Example:
+### Example:
 
 ```bash
 $ keycontrol -p 9000 -a mytoken
 ```
 
-### Environment Variables
+## Environment Variables
 
 Customize the server port and authentication token using the following environment variables:
 
 - `KEY_CONTROL_PORT`: Sets the server port (default: 8080).
 - `KEY_CONTROL_AUTH_TOKEN`: Sets the authentication token (default: keycontrol).
 
-#### Example:
+### Example:
 
 ```bash
 $ export KEY_CONTROL_PORT=9000
@@ -135,20 +119,20 @@ $ export KEY_CONTROL_AUTH_TOKEN=mytoken
 $ keycontrol
 ```
 
-## Key Code Mapping
+# Key Code Mapping
 
 Refer to the source code for a complete list of key codes.
 
-## Feedback and Contributions
+# Feedback and Contributions
 
 If you encounter any issues or have suggestions for improvement, please [open an issue](https://github.com/itpey/keycontrol/issues) on GitHub.
 
 We welcome contributions! Fork the repository, make your changes, and submit a pull request.
 
-## License
+# License
 
 KeyControl is open-source software released under the Apache License, Version 2.0. You can find a copy of the license in the [LICENSE](https://github.com/itpey/keycontrol/blob/main/LICENSE) file.
 
-## Author
+# Author
 
 KeyControl was created by [itpey](https://github.com/itpey)
